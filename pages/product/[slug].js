@@ -77,33 +77,33 @@ const ProductDetails = ({ products, product }) => {
                 <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
                     {/* ------------------------------left column start------------------------------ */}
                     <div className="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
-                        <ProductDetailsCarousel images={p.image.data} />
+                        <ProductDetailsCarousel images={p?.image?.data} />
                     </div>
                     {/* left column end */}
                     {/* -----------------------right column start ---------------------*/}
                     <div className="flex-[1] py-3">
                         {/* PRODUCT TITLE */}
                         <div className="text-[34px] font-semibold mb-2 leading-tight">
-                            {p.name}
+                            {p?.name}
                         </div>
                         {/* PRODUCT SUBTITLE */}
                         <div className="text-lg font-semibold mb-5">
-                            {p.subtitle}
+                            {p?.subtitle}
                         </div>
                         {/* PRODUCT PRICE */}
                         <div className="flex items-center">
                             <p className="mr-2 text-lg font-semibold">
                                 MRP:&#8377;{p?.price}
                             </p>
-                            {p.original_price && (
+                            {p?.original_price && (
                                 <>
                                     <p className="text-base  font-medium line-through">
                                         &#8377;{p.original_price}
                                     </p>
                                     <p className="ml-auto text-base font-medium text-green-500">
                                         {getDiscountPErcentage(
-                                            p.original_price,
-                                            p.price
+                                            p?.original_price,
+                                            p?.price
                                         )}
                                         % off
                                     </p>
@@ -140,12 +140,12 @@ const ProductDetails = ({ products, product }) => {
                                         key={i}
                                         onClick={() => {
                                             setShowError(false);
-                                            setSizeSelect(item.size);
+                                            setSizeSelect(item?.size);
                                         }}
-                                        className={`border rounded-md text-center py-3 font-medium ${item.enabled ?
+                                        className={`border rounded-md text-center py-3 font-medium ${item?.enabled ?
                                             "hover:border-black cursor-pointer" :
                                             "cursor-not-allowed bg-black/[0.1] opacity-40 "}
-                                            ${sizeSelect === item.size ? "border-black border-2" : ""}`
+                                            ${sizeSelect === item?.size ? "border-black border-2" : ""}`
                                         }>
                                         {item.size}
                                     </div>
@@ -266,7 +266,7 @@ export async function getStaticPaths() {
     const products = await fetchDataFromApi("/api/products?populate=*");
     const paths = products?.data?.map((p) => ({
         params: {
-            slug: p.attributes.slug,
+            slug: p?.attributes?.slug,
         },
     }));
 
